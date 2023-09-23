@@ -9,24 +9,32 @@
 </head>
 <body>
 
+
 <div class="container my-4">
 
+    <img th:src="@{/images/logo.jpg}" width="136" height="136">
 
 <h1>Vacantes Disponibles</h1>
 
 <table class="table table-striped">
     <thead>
     <tr>
+        <th scope="col">Logo</th>
         <th scope="col">#</th>
         <th scope="col">Nombre</th>
         <th scope="col">Fecha de Pub</th>
         <th scope="col">Salario Ofrecido</th>
         <th scope="col">Descripción</th>
         <th scope="col">Destacado</th>
+        <th scope="col">Detalle</th>
+
     </tr>
     </thead>
     <tbody>
     <tr th:each="vacante : ${vacantes}">
+        <td>
+            <img th:src="@{/images/{img} (img=${vacante.imagen})}" width="136" height="136">
+        </td>
         <td th:text="${vacante.id}">ID</td>
         <td th:text="${vacante.nombre}"></td>
         <td th:text="${vacante.fecha}"></td>
@@ -36,6 +44,10 @@
             <span th:if="${vacante.destacado==1}" class="badge badge-success">SI</span>
             <span th:unless="${vacante.destacado==1}" class="badge badge-danger">NO</span>
         </td>
+        <td>
+            <a  class="btn btn-success" th:href="@{/vacantes/view/{id} (id=${vacante.id})}  ">Detalle</a>
+        </td>
+
     </tr>
 
     </tbody>
